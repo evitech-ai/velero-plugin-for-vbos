@@ -1,5 +1,3 @@
-[![Build Status][101]][102]
-
 # Velero plugins for VBOS
 
 ## Overview
@@ -12,7 +10,7 @@ This repository contains these plugins to support running Velero on evitech VBOS
 
 ## Run vbos S3 proxy server
 
-Velero requires an object storage bucket to store backups in, preferably unique to a single Kubernetes cluster (see the [FAQ][11] for more details). Create an S3 bucket, replacing placeholders appropriately:
+Velero requires an object storage bucket to store backups in, preferably unique to a single Kubernetes cluster. Create an S3 bucket, replacing placeholders appropriately:
 
 ```bash
 kubectl create ns velero
@@ -44,8 +42,6 @@ where the access key id and secret are the values returned from the `create-acce
 
 ## Install and start Velero
 
-[Download][4] Velero
-
 Install Velero, including all prerequisites, into the cluster and start the deployment. This will create a namespace called `velero`, and place a deployment named `velero` in it.
 
 
@@ -67,11 +63,9 @@ kubectl delete crds -l component=velero
 
 Additionally, you can specify `--use-restic` to enable restic support, and `--wait` to wait for the deployment to be ready.
 
-(Optional) Specify [additional configurable parameters][7] for the `--backup-location-config` flag.
+(Optional) Specify [additional configurable parameters][1] for the `--backup-location-config` flag.
 
-(Optional) Specify [additional configurable parameters][8] for the `--snapshot-location-config` flag.
-
-(Optional) [Customize the Velero installation][9] further to meet your needs.
+(Optional) [Customize the Velero installation][2] further to meet your needs.
 
 For more complex installation needs, use either the Helm chart, or add `--dry-run -o yaml` options for generating the YAML representation for the installation.
 
@@ -86,3 +80,6 @@ kubectl logs deployment/velero -n velero
 velero backup logs nginx-backup
 velero backup describe nginx-backup
 ```
+
+[1]: backupstoragelocation.md
+[2]: https://velero.io/docs/customize-installation/
